@@ -8,6 +8,54 @@ all_diff(List) :-
 
 solve(Schedule) :-
   Schedule = [C01_1, C01_2, C01_3, C02_1, C02_2, C02_3, C03_1, C03_2, C03_3, C04_1, C04_2, C04_3, C05_1, C05_2, C05_3, C06_1, C06_2, C06_3, C07_1, C07_2, C07_3, C08_1, C08_2, C08_3, C09_1, C09_2, C09_3, C10_1, C10_2, C10_3, C11_1, C11_2, C11_3, C12_1, C12_2, C12_3],
+  % Matt's constraints
+  % member([e332, 1, 1], Schedule),
+  C01_1 = [e332, 1, 1],
+  E332_trimester = 1,
+
+  member([e308, 4, 1], Schedule),
+  E308_trimester = 1,
+
+  member([e390, 2, 2], Schedule),
+  E390_trimester = 2,
+  % member([e373, 5, 2], Schedule),
+  E373_trimester = 2,
+  C02_3 = [e373, 5, 2],
+
+  member([e516, 4, 3], Schedule),
+  E516_trimester = 3,
+
+  % member([e397, 1, 4], Schedule),
+  E397_trimester = 4,
+  C04_1 = [e397, 1, 4],
+
+  % member([e512, 1, 6], Schedule),
+  E512_trimester = 6,
+  C06_1 = [e512, 1, 6],
+
+  member([e272, 3, 7], Schedule),
+  E272_trimester = 7,
+
+  member([e344, 4, 8], Schedule),
+  E344_trimester = 8,
+
+  % member([e530, 5, 9], Schedule),
+  E530_trimester = 9,
+  C09_3 = [e530, 5, 9],
+
+  % member([e199, 5, 10], Schedule),
+  E199_trimester = 10,
+  C10_3 = [e199, 5, 10],
+
+  % member([e361, 1, 11], Schedule),
+  E361_trimester = 11,
+  C11_1 = [e361, 1, 11],
+
+  % member([e504, 1, 12], Schedule),
+  E504_trimester = 12,
+  C12_1 = [e504, 1, 12],
+  member([e343, 3, 12], Schedule),
+  E343_trimester = 12,
 
   C01_1 = [C01_1_num, C01_1_slot,  1],
   C01_2 = [C01_2_num, C01_2_slot,  1],
@@ -184,7 +232,7 @@ solve(Schedule) :-
   member(E102_trimester, [1, 4, 7, 10]),
 
   % ENGM 115
-  E115_trimester =\= E265_trimester,
+  dif(E115_trimester, E265_trimester),
 
   % ENGM 128
   member(E128_trimester, [1, 2, 4, 5, 7, 8, 10, 11]),
@@ -344,20 +392,6 @@ solve(Schedule) :-
   [C01_1_num, C01_2_num, C01_3_num, C02_1_num, C02_2_num, C02_3_num, C03_1_num, C03_2_num, C03_3_num, C04_1_num, C04_2_num, C04_3_num, C05_1_num, C05_2_num, C05_3_num, C06_1_num, C06_2_num, C06_3_num, C07_1_num, C07_2_num, C07_3_num, C08_1_num, C08_2_num, C08_3_num, C09_1_num, C09_2_num, C09_3_num, C10_1_num, C10_2_num, C10_3_num, C11_1_num, C11_2_num, C11_3_num, C12_1_num, C12_2_num, C12_3_num]
   ),
 
-  % Trimester_01 = 1,
-  % Trimester_02 = 2,
-  % Trimester_03 = 3,
-  % Trimester_04 = 4,
-  % Trimester_05 = 5,
-  % Trimester_06 = 6,
-  % Trimester_07 = 7,
-  % Trimester_08 = 8,
-  % Trimester_09 = 9,
-  % Trimester_10 = 10,
-  % Trimester_11 = 11,
-  % Trimester_12 = 12,
-
-
   all_members(Schedule, Offerings),
 
 
@@ -445,33 +479,6 @@ solve(Schedule) :-
     [e176, 3, 12], [e289, 3, 21], [e343, 3, 12], [e421, 3, 12], [e438, 3, 12],
     [e332, 4, 12], [e426, 4, 21], [e428, 4, 12], [e468, 4, 12], [e516, 4, 12],
     [e115, 5, 12], [e156, 5, 21], [e373, 5, 12], [e402, 5, 12], [e512, 5, 12]
-  ],
+  ]
 
-  % Matt's constraints
-  member([e332, 1, 1], Schedule),
-  member([e308, 4, 1], Schedule),
-  E332_trimester =:= 1,
-  E308_trimester =:= 1,
-
-  member([e390, 2, 2], Schedule),
-  member([e373, 5, 2], Schedule),
-
-  member([e516, 4, 3], Schedule),
-
-  member([e397, 1, 4], Schedule),
-
-  member([e512, 1, 6], Schedule),
-
-  member([e272, 3, 7], Schedule),
-
-  member([e344, 4, 8], Schedule),
-
-  member([e530, 5, 9], Schedule),
-
-  member([e199, 5, 10], Schedule),
-
-  member([e361, 1, 11], Schedule),
-
-  member([e504, 1, 12], Schedule),
-  member([e343, 3, 12], Schedule)
   .
