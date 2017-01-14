@@ -445,4 +445,33 @@ solve(Schedule) :-
     [e176, 3, 12], [e289, 3, 21], [e343, 3, 12], [e421, 3, 12], [e438, 3, 12],
     [e332, 4, 12], [e426, 4, 21], [e428, 4, 12], [e468, 4, 12], [e516, 4, 12],
     [e115, 5, 12], [e156, 5, 21], [e373, 5, 12], [e402, 5, 12], [e512, 5, 12]
-  ].
+  ],
+
+  % Matt's constraints
+  member([e332, 1, 1], Schedule),
+  member([e308, 4, 1], Schedule),
+  E332_trimester =:= 1,
+  E308_trimester =:= 1,
+
+  member([e390, 2, 2], Schedule),
+  member([e373, 5, 2], Schedule),
+
+  member([e516, 4, 3], Schedule),
+
+  member([e397, 1, 4], Schedule),
+
+  member([e512, 1, 6], Schedule),
+
+  member([e272, 3, 7], Schedule),
+
+  member([e344, 4, 8], Schedule),
+
+  member([e530, 5, 9], Schedule),
+
+  member([e199, 5, 10], Schedule),
+
+  member([e361, 1, 11], Schedule),
+
+  member([e504, 1, 12], Schedule),
+  member([e343, 3, 12], Schedule)
+  .
