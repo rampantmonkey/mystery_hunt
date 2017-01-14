@@ -57,6 +57,11 @@ solve(Schedule) :-
   member([e343, 3, 12], Schedule),
   E343_trimester = 12,
 
+  all_members(
+  [e102, e115, e128, e145_1, e145_2, e156, e176, e180, e199, e205, e234, e253, e265, e272, e289, e308, e332, e343, e344, e361, e373, e390, e397, e402, e421, e426, e428, e438, e440, e468, e474, e475, e504, e512, e516, e530],
+  [C01_1_num, C01_2_num, C01_3_num, C02_1_num, C02_2_num, C02_3_num, C03_1_num, C03_2_num, C03_3_num, C04_1_num, C04_2_num, C04_3_num, C05_1_num, C05_2_num, C05_3_num, C06_1_num, C06_2_num, C06_3_num, C07_1_num, C07_2_num, C07_3_num, C08_1_num, C08_2_num, C08_3_num, C09_1_num, C09_2_num, C09_3_num, C10_1_num, C10_2_num, C10_3_num, C11_1_num, C11_2_num, C11_3_num, C12_1_num, C12_2_num, C12_3_num]
+  ),
+
   C01_1 = [C01_1_num, C01_1_slot,  1],
   C01_2 = [C01_2_num, C01_2_slot,  1],
   C01_3 = [C01_3_num, C01_3_slot,  1],
@@ -282,7 +287,8 @@ solve(Schedule) :-
   member(E289_trimester + 1, Sudokus),
 
   % e308
-  E308_trimester =:= E332_trimester,
+  % Already covered by `Matt's constraints`
+  % E308_trimester =:= E332_trimester,
 
   % e332
   % No conditions
@@ -387,11 +393,6 @@ solve(Schedule) :-
   % member(E530_trimester, [3, 6, 9, 12]),
 
 
-  all_members(
-  [e102, e115, e128, e145_1, e145_2, e156, e176, e180, e199, e205, e234, e253, e265, e272, e289, e308, e332, e343, e344, e361, e373, e390, e397, e402, e421, e426, e428, e438, e440, e468, e474, e475, e504, e512, e516, e530],
-  [C01_1_num, C01_2_num, C01_3_num, C02_1_num, C02_2_num, C02_3_num, C03_1_num, C03_2_num, C03_3_num, C04_1_num, C04_2_num, C04_3_num, C05_1_num, C05_2_num, C05_3_num, C06_1_num, C06_2_num, C06_3_num, C07_1_num, C07_2_num, C07_3_num, C08_1_num, C08_2_num, C08_3_num, C09_1_num, C09_2_num, C09_3_num, C10_1_num, C10_2_num, C10_3_num, C11_1_num, C11_2_num, C11_3_num, C12_1_num, C12_2_num, C12_3_num]
-  ),
-
   all_members(Schedule, Offerings),
 
 
@@ -482,3 +483,89 @@ solve(Schedule) :-
   ]
 
   .
+
+check_blank :-
+  Schedule = [
+  [_, _, _],
+  [_, _, _],
+  [_, _, _],
+  [_, _, _],
+  [_, _, _],
+  [_, _, _],
+  [_, _, _],
+  [_, _, _],
+  [_, _, _],
+  [_, _, _],
+  [_, _, _],
+  [_, _, _],
+  [_, _, _],
+  [_, _, _],
+  [_, _, _],
+  [_, _, _],
+  [_, _, _],
+  [_, _, _],
+  [_, _, _],
+  [_, _, _],
+  [_, _, _],
+  [_, _, _],
+  [_, _, _],
+  [_, _, _],
+  [_, _, _],
+  [_, _, _],
+  [_, _, _],
+  [_, _, _],
+  [_, _, _],
+  [_, _, _],
+  [_, _, _],
+  [_, _, _],
+  [_, _, _],
+  [_, _, _],
+  [_, _, _],
+  [_, _, _]
+  ],
+  solve(Schedule)
+  .
+
+check_1 :-
+  Schedule = [
+  [e332  , _,  1],
+  [e402  , _,  1],
+  [e308  , _,  1],
+  % This should return false quickly.
+  [e332  , _,  2],
+  [_     , _,  2],
+  [_     , _,  2],
+  [_     , _,  3],
+  [_     , _,  3],
+  [_     , _,  3],
+  [_     , _,  4],
+  [_     , _,  4],
+  [_     , _,  4],
+  [_     , _,  5],
+  [_     , _,  5],
+  [_     , _,  5],
+  [_     , _,  6],
+  [_     , _,  6],
+  [_     , _,  6],
+  [_     , _,  7],
+  [_     , _,  7],
+  [_     , _,  7],
+  [_     , _,  8],
+  [_     , _,  8],
+  [_     , _,  8],
+  [_     , _,  9],
+  [_     , _,  9],
+  [_     , _,  9],
+  [_     , _,  10],
+  [_     , _,  10],
+  [_     , _,  10],
+  [_     , _,  11],
+  [_     , _,  11],
+  [_     , _,  11],
+  [_     , _,  12],
+  [_     , _,  12],
+  [_     , _,  12]
+  ],
+  solve(Schedule)
+  .
+
