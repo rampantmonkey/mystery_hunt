@@ -3,18 +3,6 @@
 all_members([H], L2) :- member(H, L2).
 all_members([H|T],L2) :- member(H, L2), all_members(T, L2).
 
-
- % delete(L,E,LN) is true if a list LN is identical to a list L
- % after removing all occurences of an element E.
- delete([H|T],H,TN) :- delete(T,H,TN).
- delete([H|T],E,[H|TN]) :- \+ H=E, delete(T,E,TN).
- delete([],_,[]).
-
- % unique(L,LN) is true if a list LN is identical to a list L
- % without all repeated elements.
- unique([H|T],[H|TU]) :- delete(T,E,TN), unique(TN,TU).
- unique([],[]).
-
 all_diff(List) :-
   \+ (select(X, List, R), memberchk(X, R)).
 
@@ -239,7 +227,11 @@ solve(Schedule) :-
   member(E272_trimester, [1, 4, 7, 10]),
 
   % e289
-  % Must be taken immediately before and after a sudoku seminar
+  % Must be taken immediately before and after a Sudoku seminar aka Sudoku Sandwich
+  E289_trimester < 12,
+  E289_trimester > 1,
+  member(E289_trimester - 1, Sudokus),
+  member(E289_trimester + 1, Sudokus),
 
   % e308
   E308_trimester =:= E332_trimester,
@@ -270,16 +262,17 @@ solve(Schedule) :-
 
   % e402
   % Sudoku seminar. At most one Sudoku seminar per trimester.
-  all_diff([ E402_trimester
-           , E421_trimester
-           , E426_trimester
-           , E428_trimester
-           , E438_trimester
-           , E440_trimester
-           , E468_trimester
-           , E474_trimester
-           , E475_trimester
-           ]),
+  Sudokus = [ E402_trimester
+            , E421_trimester
+            , E426_trimester
+            , E428_trimester
+            , E438_trimester
+            , E440_trimester
+            , E468_trimester
+            , E474_trimester
+            , E475_trimester
+            ],
+  all_diff(Sudokus),
 
   % e421
   % Sudoku seminar. At most one Sudoku seminar per trimester.
